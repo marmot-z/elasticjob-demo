@@ -1,6 +1,12 @@
 > 本项目主要用于验证 elastic job 相关问题
 
 # 验证关闭 elastic-job 时无法中断定时任务
+## 复现流程
+1. 将本项目 clone 到本地，使用 Intellij IDEA 打开
+2. 本地启动 zookeeper 
+3. 启动 com.zxw.Main 类，等待 10 秒观察程序是否退出
+4. 执行 `kill -15 ${pid}` 命令，观察程序是否退出
+
 ## 期待
 当创建并启动定时任务后，调用 ScheduleJobBootstrap.shutdown 方法关闭定时任务时，对应的 jobScheduler 应该退出，用户的代码应该能正常接受线程中断，并执行相关提出逻辑后退出
 
